@@ -24,6 +24,7 @@ for letter_item in letters_input:
     if results.get('How many times each letter appears') is None:
         results['How many times each letter appears'] = {}
     # results['How many times each letter appears'][letter_item] = get_match_count(text_entered, letter_item)
+    # noinspection PyTypeChecker
     results['How many times each letter appears'][letter_item] = text_entered.lower().count(letter_item.lower())
 
 results['Total words'] = len(text_entered.split(' '))
