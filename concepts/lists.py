@@ -34,3 +34,19 @@ print(numbers)
 print(new_numbers)
 print(new_numbers2)
 
+my_word = 'python'
+my_word_list = [*my_word]
+my_word_list_2 = [char.upper() for char in my_word]
+print(my_word_list)
+print(my_word_list_2)
+
+my_numbers_list = [n**2 for n in range(1, 101)]
+print(my_numbers_list)
+
+my_numbers_list_2 = [n**2 if n % 2 == 0 else n**3 for n in range(1, 11)]
+print(my_numbers_list_2)
+
+even_numbers = [n for n in range(0,101) if n % 2 == 0]
+print(even_numbers)
+odd_numbers = [n for n in range(0,101) if n % 2 != 0]
+print(odd_numbers)
