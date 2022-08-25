@@ -50,3 +50,7 @@ even_numbers = [n for n in range(0,101) if n % 2 == 0]
 print(even_numbers)
 odd_numbers = [n for n in range(0,101) if n % 2 != 0]
 print(odd_numbers)
+
+# spread operator for iterables
+list_1 = [1, 2, 3]
+list_2 = [*list_1, 4, 5, 6]  # [1, 2, 3, 4, 5, 6]

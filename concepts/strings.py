@@ -62,9 +62,14 @@ print(f"'Hola' not in 'Hello world': {'Hola' not in 'Hello world'}")  # out: Tru
 
 
 word = ' Hello '
-# string.strip() remove laterals white spaces
+# string.strip(chars) remove laterals white spaces or characters passed in params
 print(word.strip())  # out: 'Hello'
-# string.lstrip() remove left white spaces
+# string.lstrip(chars) remove left white spaces or characters passed in params
 print(word.lstrip())  # out: 'Hello '
-# string.rstrip() remove right white spaces
+# string.rstrip(chars) remove right white spaces or characters passed in params
 print(word.rstrip())  # out: ' Hello'
+
+print(",,,,,..text,,,,,.".strip(',.'))  # out: 'hello'
+print(",,,,,..text,,,,,.".rstrip(',.'))  # out: 'hello,,,,,.'
+print(",,,,,..text,,,,,.".lstrip(',.'))  # out: ',,,,,..hello'
+

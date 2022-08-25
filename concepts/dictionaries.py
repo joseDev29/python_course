@@ -15,3 +15,7 @@ print(user.items())
 print(list(user.keys()))
 print(list(user.values()))
 print(list(user.items()))
+
+# spread operator for dictionaries
+my_dic_1 = {'name': 'Jane', 'lastname': 'Hope'}
+new_user = {**my_dic_1, 'age': 35}  # {'name': 'Jane', 'lastname': 'Hope', 'age': 35}
