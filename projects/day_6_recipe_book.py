@@ -62,7 +62,7 @@ def select_recipe(path: Path, category: str) -> str:
 
 
 def create_category(path: Path):
-    category_name: str = input("\n Input category name: ").strip().capitalize()
+    category_name: str = input("\n Input category name: ").strip().title()
     new_category_path = Path(path, category_name)
     new_category_path.mkdir()
     print("\nCategory created success!")
@@ -91,8 +91,8 @@ def read_recipe(path: Path):
 
 def create_recipe(path: Path):
     selected_category: str = select_category(path)
-    recipe_name = input("Input recipe name: ").strip().capitalize()
-    recipe_content = input("Input recipe: ").strip().capitalize()
+    recipe_name = input("Input recipe name: ").strip().title()
+    recipe_content = input("Input recipe: ").strip()
     new_file = open(Path(path, selected_category, recipe_name + '.txt'), "w")
     new_file.write(recipe_content)
     new_file.close()

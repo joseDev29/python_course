@@ -40,6 +40,7 @@ print("'Eren Jaeger'[::-1] : " + 'Eren Jaeger'[::-1])  # out: 'regeaJ nerE'
 
 upper_case_str = 'Eren Jaeger'.upper()  # out: 'EREN JAEGER'
 lower_case_str = 'Eren Jaeger'.lower()  # out; 'eren jaeger'
+title_str = 'eren jaeger'.title()  # out: 'Eren Jaeger'
 split_str = 'Eren Jaeger'.split(' ')  # out: [ 'Eren', 'Jaeger' ]
 join_str = ','.join(split_str)  # out: 'Eren,Jaeger'
 find_str = 'Levi Ackerman'.find("Ac")  # out: 5
