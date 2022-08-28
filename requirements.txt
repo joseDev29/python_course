@@ -1,1 +1,2 @@
+pygame==2.1.2
 Send2Trash==1.8.0
