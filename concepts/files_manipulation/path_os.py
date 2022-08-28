@@ -1,9 +1,9 @@
 import os
 from pathlib import Path, PureWindowsPath
 
-current_path = os.getcwd()  # out: current path
-print(current_path)
-
+# Different behavior with main.py files
+directory_path = os.getcwd()  # out: current directory_path
+print(directory_path)
 # \\ in paths only for windows
 
 # directory = Path('/Users/user/my_directory')  # out: path for all systems
