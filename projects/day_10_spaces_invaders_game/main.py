@@ -98,7 +98,6 @@ def main():
     # Bullet
     bullet_x = 0
     bullet_y = 500
-    bullet_x_change = 0
     bullet_y_change = get_speed_change_by_game_object('bullet')[0]
     bullet_visible = False
 
