@@ -1,7 +1,22 @@
 import math
+import sys
 from typing import Tuple
 import pygame
 import random
+
+
+def get_speed_change_by_game_object(object_type: str, ) -> Tuple[float, float]:
+    is_mac_os = sys.platform.startswith('darwin')
+
+    match object_type:
+        case 'player':
+            return (3, 0) if is_mac_os else (0.4, 0)
+        case 'enemy':
+            return (3, 32) if is_mac_os else (0.4, 32)
+        case 'bullet':
+            return (0, 4) if is_mac_os else (0, 0.5)
+        case _:
+            return 0, 0
 
 
 def draw_player(display: pygame.Surface, player: pygame.Surface, coords: Tuple[float, float]):
@@ -74,16 +89,17 @@ def main():
     enemies_count = 8
 
     for index in range(enemies_count):
+        enemy_speed_change = get_speed_change_by_game_object('enemy')
         enemies_x.append(random.randint(0, 736))
         enemies_y.append(random.randint(50, 200))
-        enemies_x_change.append(2)
-        enemies_y_change.append(32)
+        enemies_x_change.append(enemy_speed_change[0])
+        enemies_y_change.append(enemy_speed_change[1])
 
     # Bullet
     bullet_x = 0
     bullet_y = 500
     bullet_x_change = 0
-    bullet_y_change = 4
+    bullet_y_change = get_speed_change_by_game_object('bullet')[0]
     bullet_visible = False
 
     score = 0
@@ -106,9 +122,9 @@ def main():
                 case pygame.KEYDOWN:
                     match event.key:
                         case pygame.K_LEFT:
-                            player_x_change = -3
+                            player_x_change = -get_speed_change_by_game_object('player')[0]
                         case pygame.K_RIGHT:
-                            player_x_change = 3
+                            player_x_change = get_speed_change_by_game_object('player')[0]
                         case pygame.K_SPACE:
                             if not bullet_visible:
                                 shot_sound.play()
@@ -152,10 +168,10 @@ def main():
 
             # Avoid enemy collapse
             if enemies_x[index] <= 0:
-                enemies_x_change[index] = 2
+                enemies_x_change[index] = get_speed_change_by_game_object('enemy')[0]
                 enemies_y[index] += enemies_y_change[index]
             if enemies_x[index] >= 736:
-                enemies_x_change[index] = -2
+                enemies_x_change[index] = -get_speed_change_by_game_object('enemy')[0]
                 enemies_y[index] += enemies_y_change[index]
 
             collision = detect_collision((enemies_x[index], enemies_y[index]), (bullet_x, bullet_y))
