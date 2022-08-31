@@ -88,11 +88,69 @@ def main():
     # for voice in voices:
     #     print(voice)
 
-    get_audio_result()
+    # get_audio_result()
     # speak('Hello world', voices['helena'])
-    # greeting()
+    greeting()
     # request_day()
     # request_hour()
+
+    exit_program = False
+
+    while not exit_program:
+
+        request = get_audio_result().lower()
+
+        if 'open youtube' in request:
+            speak('Youtube opened', voices['zira'])
+            webbrowser.open('https://www.youtube.com')
+            continue
+        elif 'open browser' in request:
+            speak('Browser opened', voices['zira'])
+            webbrowser.open('https://www.google.com')
+            continue
+        elif 'what day is today' in request:
+            request_day()
+            continue
+        elif 'what time is' in request:
+            request_hour()
+            continue
+        elif 'search in wikipedia' in request:
+            speak('Search', voices['zira'])
+            request = request.replace('search in wikipedia', '')
+            wikipedia.set_lang('es')
+            result = wikipedia.summary(request, sentences=1)
+            speak(f'Wikipedia result', voices['zira'])
+            speak(result, voices['helena'])
+            continue
+        elif 'search in web' in request:
+            speak('Search', voices['zira'])
+            pywhatkit.search(request.replace('search in web', ''))
+            speak('Result', voices['zira'])
+            continue
+        elif 'play' in request:
+            speak('What video', voices['zira'])
+            pywhatkit.playonyt(request.replace('play', ''))
+            continue
+        elif 'joke' in request:
+            speak(pyjokes.get_joke('es'), voices['helena'])
+            continue
+        elif 'actions prices' in request:
+            action = request.split('of')[-1].strip()
+            wallet = {'apple': 'AAPL', 'amazon': "AMZN", 'google': 'GOOGL'}
+            searched_action = wallet.get(action.lower())
+
+            if searched_action is None:
+                speak('Not found action', voices['zira'])
+                continue
+
+            searched_action = yf.Ticker(searched_action)
+            current_price = searched_action.info.get('regularMarketPrice')
+            print(searched_action.info)
+            speak(f'Price of {action} is {current_price}', voices['zira'])
+            continue
+        elif 'bye' in request:
+            speak('Bye', voices['zira'])
+            exit_program = True
 
 
 main()
